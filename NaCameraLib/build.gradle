@@ -5,11 +5,31 @@ android {
     buildToolsVersion "24.0.1"
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 24
+        minSdkVersion 9
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        ndk {
+            moduleName "nacommon"
+            stl "gnustl_shared"
+            abiFilters "all"
+            ldLibs "log"
+        }
     }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+//            java.srcDirs = ['src/main/java']
+//            resources.srcDirs = ['src']
+//            aidl.srcDirs = ['src']
+//            renderscript.srcDirs = ['src']
+//            res.srcDirs = ['res']
+//            assets.srcDirs = ['assets']
+            jni.srcDirs = ['src/main/jni']
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NaCameraApp</string>
+    <string name="switch_camera">Switch</string>
+    <string name="switch_light">Light</string>
+    <string name="main">Main</string>
+    <string name="camera">Camera</string>
 </resources>

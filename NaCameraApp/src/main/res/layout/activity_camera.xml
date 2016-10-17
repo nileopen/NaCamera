@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<com.na.view.NaAspectRatioFrameLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <android.opengl.GLSurfaceView
+            android:id="@+id/sfCamera"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    <!--</com.na.view.NaAspectRatioFrameLayout>-->
+
+    <Button
+        android:id="@+id/btSwitch"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/switch_camera"
+        android:textColor="@color/colorPrimary" />
+
+    <Button
+        android:id="@+id/btLight"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/btSwitch"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/switch_light"
+        android:textColor="@color/colorPrimary" />
+
+</RelativeLayout>
