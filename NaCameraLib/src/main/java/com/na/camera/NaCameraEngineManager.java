@@ -39,7 +39,7 @@ public class NaCameraEngineManager implements INaCameraEngine, INaCameraEvent{
 //        }
 
         if (mCameraEngine == null) {
-            mCameraEngine = new NaCameraEngine1();
+            mCameraEngine = new NaCameraEngine();
         }
     }
 

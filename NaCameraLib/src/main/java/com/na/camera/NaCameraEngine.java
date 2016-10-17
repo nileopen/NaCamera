@@ -56,11 +56,7 @@ public class NaCameraEngine implements INaCameraEngine,
 
     private void close() {
         if (mCamera != null) {
-            if (isCapturingToTexture) {
-                mCamera.setPreviewCallback(null);
-            }else {
-                mCamera.setPreviewCallbackWithBuffer(null);
-            }
+            mCamera.setPreviewCallbackWithBuffer(null);
             mCamera.stopPreview();
             mCamera.release();
         }
@@ -93,13 +89,11 @@ public class NaCameraEngine implements INaCameraEngine,
             SurfaceTexture sf = mSurfaceHelper.getSurfaceTexture();
             if (sf != null) {
                 mCamera.setPreviewTexture(sf);
-                isCapturingToTexture = true;
             }
 
             SurfaceHolder holder = mSurfaceHelper.getSurfaceHolder();
             if (holder != null) {
                 mCamera.setPreviewDisplay(holder);
-                isCapturingToTexture = false;
             }
 
             boolean isFace = (mCameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT);
@@ -179,11 +173,9 @@ public class NaCameraEngine implements INaCameraEngine,
                 mDropNextFrame = true;
                 // Calling |setPreviewCallbackWithBuffer| with null should clear the internal camera buffer
                 // queue, but sometimes we receive a frame with the old resolution after this call anyway.
-                if (!isCapturingToTexture) {
-                    mCamera.setPreviewCallbackWithBuffer(null);
-                } else {
-                    mCamera.setPreviewCallback(null);
-                }
+
+                mCamera.setPreviewCallbackWithBuffer(null);
+
             }
 
             // (Re)start preview.
@@ -206,8 +198,6 @@ public class NaCameraEngine implements INaCameraEngine,
                     mCamera.addCallbackBuffer(buffer.array());
                 }
                 mCamera.setPreviewCallbackWithBuffer(this);
-            } else {
-                mCamera.setPreviewCallback(this);
             }
 
             mCamera.startPreview();
@@ -356,7 +346,7 @@ public class NaCameraEngine implements INaCameraEngine,
 
     @Override
     public void onPreviewFrame(byte[] data, Camera camera) {
-        if (mCamera == null || (!mQueuedBuffers.contains(data) && isCapturingToTexture)) {
+        if (mCamera == null || (!mQueuedBuffers.contains(data))) {
             // The camera has been stopped or |data| is an old invalid buffer.
             return;
         }
