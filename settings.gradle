@@ -1,1 +1,1 @@
-include ':NaCameraLib', ':NaCameraApp'
+include ':NaCameraLib', ':NaCameraApp', ':library', ':magicfilter'
